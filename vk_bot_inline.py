@@ -1,6 +1,7 @@
 import requests
 import vk_api
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
+
 from logic import clear
 
 
@@ -9,7 +10,10 @@ def main():
 
     # Авторизация группы:
 
-    vk_session = vk_api.VkApi(token='***')
+    gr_token = open("token.txt", "r")
+    gr_token = gr_token.read()
+
+    vk_session = vk_api.VkApi(token=gr_token)
 
     vk = vk_session.get_api()
 
