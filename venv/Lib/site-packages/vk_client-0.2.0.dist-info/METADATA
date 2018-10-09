@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: vk-client
+Version: 0.2.0
+Summary: Python 2/3 high level VK API.
+Home-page: https://github.com/Suenweek/vk-client
+Author: Roman Novatorov
+Author-email: roman.novatorov@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Provides-Extra: tests
+Requires-Dist: arrow
+Requires-Dist: cached-property
+Requires-Dist: six
+Requires-Dist: enum34
+Requires-Dist: more-itertools
+Requires-Dist: vk
+Requires-Dist: requests
+Requires-Dist: Pillow
+Provides-Extra: tests
+Requires-Dist: tox; extra == 'tests'
+Requires-Dist: pytest; extra == 'tests'
+
+UNKNOWN
+
+

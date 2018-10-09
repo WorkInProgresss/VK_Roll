@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: vk-bot
+Version: 0.6.1
+Summary: Py3 VK bot builder.
+Home-page: https://github.com/Suenweek/vk-bot
+Author: Roman Novatorov
+Author-email: roman.novatorov@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: vk-client
+
+UNKNOWN
+
+

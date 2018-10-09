@@ -1,0 +1,6 @@
+__title__ = 'vk-bot'
+__version__ = '0.6.1'
+__description__ = 'Py3 VK bot builder.'
+__url__ = 'https://github.com/Suenweek/vk-bot'
+__author__ = 'Roman Novatorov'
+__author_email__ = 'roman.novatorov@gmail.com'
