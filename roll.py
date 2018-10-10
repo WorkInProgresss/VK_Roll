@@ -3,25 +3,21 @@ import re
 
 
 def droll(vkinput, mark):
-    d_res = 0
 
     if '+' in vkinput:
         p = re.compile('\d+d\d+[+]\d+\Z')
         m = p.match(vkinput)
 
         if m:
-            form = vkinput.replace('+', 'd')
-            form = form.replace('=', "")
-            form = form.split('d')
-            form = list((map(int, form)))
+            form = inp_form(vkinput)
 
             d_res = roll(form[0], form[1])
-
-            formula = str(vkinput)
-            rolls = str(d_res[1])
             res = str(d_res[0] + form[2])
+            rolls = str(d_res[1])
 
-            return res_out(formula, rolls, res, mark)
+            to_exp = [rolls, res]
+
+            return to_exp
 
 
         else:
@@ -33,16 +29,15 @@ def droll(vkinput, mark):
         m = p.match(vkinput)
 
         if m:
-            form = vkinput.replace('-', 'd')
-            form = form.replace('=', "")
-            form = form.split('d')
-            form = list((map(int, form)))
+            form = inp_form(vkinput)
 
-            formula = str(vkinput)
-            rolls = str(d_res[1])
+            d_res = roll(form[0], form[1])
             res = str(d_res[0] - form[2])
+            rolls = str(d_res[1])
 
-            return res_out(formula, rolls, res, mark)
+            to_exp = [rolls, res]
+
+            return to_exp
 
 
         else:
@@ -53,35 +48,21 @@ def droll(vkinput, mark):
         m = p.match(vkinput)
 
         if m:
-            form = vkinput.replace('=', "")
-            form = form.split("d")
-            form = list((map(int, form)))
+            form = inp_form(vkinput)
 
             d_res = roll(form[0], form[1])
-
-            formula = str(vkinput)
-            rolls = str(d_res[1])
             res = str(d_res[0])
+            rolls = str(d_res[1])
 
-            return res_out(formula, rolls, res, mark)
+            to_exp = [rolls, res]
+
+            return to_exp
 
         else:
 
             return "Error. Print help for cmd list"
 
     return "Что то совсем кривое. Формула 1d20+-Число"
-
-
-def res_out(form, rolls, res, mark):
-    if mark == 0:
-        output = str(form) + " " + str(rolls)
-        output = re.sub('[(''),]', '', output)
-        return output
-    else:
-        output = str(form) + " " + str(rolls) + " = " + str(res)
-        output = re.sub('[(''),]', '', output)
-
-    return output
 
 
 def roll(numb, dice):
@@ -97,3 +78,12 @@ def roll(numb, dice):
 
     d_res = [d_res, rolls]
     return d_res
+
+
+def inp_form(vk_inp):
+    form = vk_inp.replace('-', 'd')
+    form = form.replace('+', 'd')
+    form = form.replace('=', "")
+    form = form.split('d')
+    form = list((map(int, form)))
+    return form

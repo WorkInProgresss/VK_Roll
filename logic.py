@@ -1,6 +1,6 @@
 import re
 
-from roll import droll
+from output import res_out
 
 
 def clear(vk_text, name):
@@ -42,7 +42,7 @@ def comm(vk_text, name, mark):
 
     elif ' ' in vk_text:
         tp = vk_text.split(' ', 1)
-        result = droll(tp[0], mark)
+        result = res_out(tp[0], mark)
         cmt = tp[1]
 
         vk_res = str(result) + " {" + str(cmt) + "}"
@@ -53,7 +53,7 @@ def comm(vk_text, name, mark):
         return vk_res
 
     else:
-        vk_res = droll(vk_text, mark)
+        vk_res = res_out(vk_text, mark)
         log_w(vk_res, name)
 
         return vk_res
