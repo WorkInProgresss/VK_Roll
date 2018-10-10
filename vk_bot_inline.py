@@ -8,11 +8,17 @@ from logic import clear
 def main():
     session = requests.Session()
 
-    # Авторизация группы:
+    # Очистка файла логов
+    log = open('logs.txt', 'w', encoding='utf-8')
+    log.write('None')
+    log.close()
+    print('Лог очищен')
 
+    # Импорт токена из файла
     gr_token = open("token.txt", "r")
     gr_token = gr_token.read()
 
+    # Авторизация группы:
     vk_session = vk_api.VkApi(token=gr_token)
 
     vk = vk_session.get_api()
@@ -33,9 +39,10 @@ def main():
 
             name = vk.users.get(user_ids=event.obj.from_id)
             name = name[0]['first_name']
+
             vk.messages.send(
                 chat_id=event.chat_id,
-                message=str(name) + str(clear(event.obj.text))
+                message=(str(clear(event.obj.text, name)))
             )
 
 if __name__ == '__main__':
