@@ -1,6 +1,8 @@
 import random
 import re
 
+import numpy
+
 
 def droll(vkinput, mark):
 
@@ -9,16 +11,25 @@ def droll(vkinput, mark):
         m = p.match(vkinput)
 
         if m:
+
             form = inp_form(vkinput)
 
             d_res = roll(form[0], form[1])
             res = str(d_res[0] + form[2])
-            rolls = str(d_res[1])
+            rolls = list(d_res[1])
 
-            to_exp = [rolls, res]
+            if mark == 0:
 
-            return to_exp
+                r_plus = numpy.array(rolls)
+                r_plus = r_plus + form[2]
+                r_plus = [r_plus, res]
 
+                return r_plus
+
+            else:
+                to_exp = [rolls, res]
+
+                return to_exp
 
         else:
 
@@ -35,9 +46,18 @@ def droll(vkinput, mark):
             res = str(d_res[0] - form[2])
             rolls = str(d_res[1])
 
-            to_exp = [rolls, res]
+            if mark == 0:
 
-            return to_exp
+                r_plus = numpy.array(rolls)
+                r_plus = r_plus + form[2]
+                r_plus = str(r_plus)
+
+                return r_plus
+
+            else:
+                to_exp = rolls + res
+
+                return to_exp
 
 
         else:
@@ -65,6 +85,14 @@ def droll(vkinput, mark):
     return "Что то совсем кривое. Формула 1d20+-Число"
 
 
+def inp_form(vk_inp):
+    form = vk_inp.replace('-', 'd')
+    form = form.replace('+', 'd')
+    form = form.replace('=', "")
+    form = form.split('d')
+    form = list((map(int, form)))
+    return form
+
 def roll(numb, dice):
     i = 0
     d_res = 0
@@ -78,12 +106,3 @@ def roll(numb, dice):
 
     d_res = [d_res, rolls]
     return d_res
-
-
-def inp_form(vk_inp):
-    form = vk_inp.replace('-', 'd')
-    form = form.replace('+', 'd')
-    form = form.replace('=', "")
-    form = form.split('d')
-    form = list((map(int, form)))
-    return form

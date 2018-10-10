@@ -4,6 +4,7 @@ from output import res_out
 
 
 def clear(vk_text, name):
+    vk_text = vk_text.replace(',', '')
     clr = vk_text.split(']', 1)
     roll = str(clr[1])
     clr = roll.strip()
