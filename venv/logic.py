@@ -1,8 +1,7 @@
 import re
 
-from dndreq import d_quer
 from output import res_out
-from r_choose import race, r_race, r_clear
+from dndreq import d_quer
 
 
 def clear(vk_text, name):
@@ -14,6 +13,7 @@ def clear(vk_text, name):
 
 
 def d_type(vk_text, name):
+
     p = re.compile('\d+d\Z')
     m = p.match(vk_text)
 
@@ -41,19 +41,6 @@ def comm(vk_text, name, mark):
 
         return out.read()
 
-    elif re.match('ir', vk_text):
-        vk_text = vk_text[3:]
-        return race(vk_text)
-
-    elif re.match('r_ir', vk_text):
-
-        return r_race()
-
-    elif re.match('c_ir', vk_text):
-
-        return r_clear()
-
-
     elif 'clr' in vk_text:
         log = open('logs.txt', 'w', encoding='utf-8')
         log.write('None')
@@ -66,11 +53,6 @@ def comm(vk_text, name, mark):
         link = d_quer(vk_text)
 
         return link
-
-    elif re.match('утро', vk_text):
-
-        return "Утро, кожаный ублюдок"
-
 
     elif ' ' in vk_text:
         tp = vk_text.split(' ', 1)

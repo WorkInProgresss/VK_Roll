@@ -6,6 +6,7 @@ from logic import clear
 
 
 def main():
+
     vk, longpoll = connect()
 
     for event in longpoll.listen():
