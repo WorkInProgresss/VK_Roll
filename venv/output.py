@@ -6,8 +6,8 @@ from roll import droll
 def res_out(in_vk, mark):
 
     if mark == 0:
-        roll, res = droll(in_vk, mark)
-        output = str(in_vk) + " " + str(roll)
+        exp = droll(in_vk, mark)
+        output = str(in_vk) + " " + str(exp[0])
         output = re.sub('[('',]', '', output)
         return output
 
@@ -19,11 +19,10 @@ def res_out(in_vk, mark):
         return output
 
     else:
-        roll, res = droll(in_vk, mark)
-        output = str(in_vk) + " " + str(roll) + " = " + str(res)
+        exp = droll(in_vk, mark)
+        output = str(in_vk) + " " + str(exp[0]) + " = " + str(exp[1])
         output = re.sub('[(''),]', '', output)
         return output
-
 
 if __name__ == '__main__':
     res_out()

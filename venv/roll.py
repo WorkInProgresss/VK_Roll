@@ -5,12 +5,9 @@ import numpy
 
 
 def droll(vkinput, mark):
-    error = "Error. Print help for cmd list"
-    err = ""
+
     if '+' in vkinput:
 
-        p = re.compile('\d+d\d+[+]\d+\Z')
-        m = p.match(vkinput)
 
         if m:
 
@@ -24,18 +21,20 @@ def droll(vkinput, mark):
 
                 r_plus = numpy.array(rolls)
                 r_plus = r_plus + form[2]
+                r_plus = [r_plus, res]
 
-                return r_plus, res
+                return r_plus
 
             else:
-                return rolls, res
+                to_exp = [rolls, res]
+
+                return to_exp
 
         else:
 
-            return error, err
+            return "Error. Print help for cmd list"
 
     elif '-' in vkinput:
-
         p = re.compile('\d+d\d+[-]\d+\Z')
         m = p.match(vkinput)
 
@@ -52,15 +51,17 @@ def droll(vkinput, mark):
                 r_plus = r_plus + form[2]
                 r_plus = str(r_plus)
 
-                return r_plus, err
+                return r_plus
 
             else:
-                return rolls, res
+                to_exp = rolls + res
+
+                return to_exp
 
 
         else:
 
-            return error, err
+            return "Error. Print help for cmd list"
     else:
         p = re.compile('\d+d\d+\Z')
         m = p.match(vkinput)
@@ -72,11 +73,13 @@ def droll(vkinput, mark):
             res = str(d_res[0])
             rolls = str(d_res[1])
 
-            return rolls, res
+            to_exp = [rolls, res]
+
+            return to_exp
 
         else:
 
-            return error, err
+            return "Error. Print help for cmd list"
 
     return "Что то совсем кривое. Формула 1d20+-Число"
 
@@ -88,7 +91,6 @@ def inp_form(vk_inp):
     form = form.split('d')
     form = list((map(int, form)))
     return form
-
 
 def roll(numb, dice):
     i = 0
