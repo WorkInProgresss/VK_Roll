@@ -1,7 +1,11 @@
+#!/usr/bin/python3.5
+# -*- coding: utf-8 -*-
+
 import re
 
 from dndreq import d_quer
 from output import res_out
+from point_buy import sim
 from r_choose import race, r_race, r_clear
 
 
@@ -67,9 +71,13 @@ def comm(vk_text, name, mark):
 
         return link
 
-    elif re.match('утро', vk_text):
-
-        return "Утро, кожаный ублюдок"
+    elif re.match('pb', vk_text):
+        vk_text = vk_text[3:]
+        tp = vk_text.split('d', 1)
+        n = int(tp[0])
+        d = int(tp[1])
+        res = sim(n, d)
+        return res
 
 
     elif ' ' in vk_text:

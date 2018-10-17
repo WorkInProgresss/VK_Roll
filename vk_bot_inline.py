@@ -1,3 +1,6 @@
+#!/usr/bin/python3.5
+# -*- coding: utf-8 -*-
+
 import requests
 import vk_api
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType

@@ -1,9 +1,13 @@
+#!/usr/bin/python3.5
+# -*- coding: utf-8 -*-
+
 from googleapiclient.discovery import build
 
 
 def d_quer(query):
     d_se = '014347923427048117103:dy1-8_r54qw'
     m_se = '014347923427048117103:c_uvq12pwc8'
+    w_se = '014347923427048117103:-meyfamyoxy'
 
     res = search(query, m_se)
     n_res = int(res['searchInformation']['totalResults'])
@@ -13,7 +17,16 @@ def d_quer(query):
         n_res = int(res['searchInformation']['totalResults'])
 
         if n_res == 0:
-            return 'Никаких тебе ссылок. Нет ничего.'
+
+            res = search(query, w_se)
+            n_res = int(res['searchInformation']['totalResults'])
+
+            if n_res == 0:
+                return 'Никаких тебе ссылок. Нет ничего.'
+
+            else:
+                link = res['items'][0]['link']
+                return link
 
         else:
             link = res['items'][0]['link']
