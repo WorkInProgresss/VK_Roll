@@ -3,16 +3,15 @@
 
 import re
 
-from roll import droll
+from roll_dice import droll
 
 
 def res_out(in_vk, mark):
-
     if mark == 0:
-        roll, res = droll(in_vk, mark)
-        output = str(in_vk) + " " + str(roll)
-        output = re.sub('[('',]', '', output)
-        return output
+        # roll, res = droll(in_vk, mark)
+        # output = str(in_vk) + " " + str(roll)
+        # output = re.sub('[('',]', '', output)
+        return droll(in_vk, mark)
 
     elif mark == 2:
         exp = droll((in_vk + str(6)), mark)

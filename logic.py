@@ -5,7 +5,6 @@ import re
 
 from dndreq import d_quer
 from output import res_out
-from point_buy import sim
 from r_choose import race, r_race, r_clear
 
 
@@ -57,7 +56,6 @@ def comm(vk_text, name, mark):
 
         return r_clear()
 
-
     elif 'clr' in vk_text:
         log = open('logs.txt', 'w', encoding='utf-8')
         log.write('None')
@@ -70,14 +68,6 @@ def comm(vk_text, name, mark):
         link = d_quer(vk_text)
 
         return link
-
-    elif re.match('pb', vk_text):
-        vk_text = vk_text[3:]
-        tp = vk_text.split('d', 1)
-        n = int(tp[0])
-        d = int(tp[1])
-        res = sim(n, d)
-        return res
 
 
     elif ' ' in vk_text:
