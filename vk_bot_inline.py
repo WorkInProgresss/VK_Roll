@@ -5,7 +5,7 @@ import requests
 import vk_api
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
 
-from logic import clear
+from sys_select import clear
 
 
 def main():

@@ -8,28 +8,7 @@ from output import res_out
 from r_choose import race, r_race, r_clear
 
 
-def clear(vk_text, name):
-    vk_text = vk_text.replace(',', '')
-    clr = vk_text.split(']', 1)
-    roll = str(clr[1])
-    clr = roll.strip()
-    return d_type(clr, name)
-
-
-def d_type(vk_text, name):
-    p = re.compile('\d+d\Z')
-    m = p.match(vk_text)
-
-    if '=' in vk_text:
-        f_inp = vk_text.replace('=', "")
-        return comm(f_inp, name, 1)
-    elif m:
-        return comm(vk_text, name, 2)
-    else:
-        return comm(vk_text, name, 0)
-
-
-def comm(vk_text, name, mark):
+def comm(vk_text, name):
     if 'rlog' in vk_text:
 
         num_lines = sum(1 for line in open('logs.txt', encoding='utf-8'))
@@ -40,7 +19,7 @@ def comm(vk_text, name, mark):
         return out
 
     elif re.match('help|cmd', vk_text):
-        out = open('cmd.txt', 'r', encoding='utf=8')
+        out = open('cmd_dnd.txt', 'r', encoding='utf=8')
 
         return out.read()
 
@@ -69,10 +48,9 @@ def comm(vk_text, name, mark):
 
         return link
 
-
     elif ' ' in vk_text:
         tp = vk_text.split(' ', 1)
-        result = res_out(tp[0], mark)
+        result = res_out(tp[0])
         cmt = tp[1]
 
         vk_res = str(result) + " {" + str(cmt) + "}"
@@ -83,7 +61,7 @@ def comm(vk_text, name, mark):
         return vk_res
 
     else:
-        vk_res = res_out(vk_text, mark)
+        vk_res = res_out(vk_text)
         log_w(vk_res, name)
 
         return vk_res
