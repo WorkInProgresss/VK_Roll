@@ -7,8 +7,7 @@ import numpy
 def droll(vkinput, mark):
 
     if '+' in vkinput:
-        p = re.compile('\d+d\d+[+]\d+\Z')
-        m = p.match(vkinput)
+
 
         if m:
 
@@ -106,3 +105,7 @@ def roll(numb, dice):
 
     d_res = [d_res, rolls]
     return d_res
+
+
+if __name__ == '__main__':
+    roll()

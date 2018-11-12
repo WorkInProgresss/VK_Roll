@@ -1,14 +1,12 @@
-#!/usr/bin/python3.5
-# -*- coding: utf-8 -*-
-
 import requests
 import vk_api
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
 
-from sys_select import clear
+from logic import clear
 
 
 def main():
+
     vk, longpoll = connect()
 
     for event in longpoll.listen():

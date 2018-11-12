@@ -1,6 +1,7 @@
 import re
 
 from output import res_out
+from dndreq import d_quer
 
 
 def clear(vk_text, name):
@@ -12,9 +13,15 @@ def clear(vk_text, name):
 
 
 def d_type(vk_text, name):
+
+    p = re.compile('\d+d\Z')
+    m = p.match(vk_text)
+
     if '=' in vk_text:
         f_inp = vk_text.replace('=', "")
         return comm(f_inp, name, 1)
+    elif m:
+        return comm(vk_text, name, 2)
     else:
         return comm(vk_text, name, 0)
 
@@ -40,6 +47,12 @@ def comm(vk_text, name, mark):
         log.close()
 
         return "Logs Deleted"
+
+    elif re.match('srd|sdr', vk_text):
+        vk_text = vk_text[4:]
+        link = d_quer(vk_text)
+
+        return link
 
     elif ' ' in vk_text:
         tp = vk_text.split(' ', 1)
