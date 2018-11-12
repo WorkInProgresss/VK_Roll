@@ -4,8 +4,10 @@
 import re
 
 from dndreq import d_quer
-from output import res_out
 from r_choose import race, r_race, r_clear
+from roll_dice import R_Dice
+
+d = R_Dice()
 
 
 class Selector:
@@ -47,12 +49,10 @@ class Selector:
             link = 'https://drive.google.com/drive/folders/0B89W9HjJUAgnVTcxdzlzN2RlbG8?usp=sharing'
             return link
 
-        elif ' ' in inp:
-            tp = inp.split(' ', 1)
-            result = res_out(tp[0])
-            cmt = tp[1]
+        elif re.match('\d+d\d', inp):
+            result = d.d_roll(inp)
 
-            vk_res = str(result) + " {" + str(cmt) + "}"
+            vk_res = str(result)
             vk_res = re.sub('[(),]', '', vk_res)
 
             return vk_res
@@ -66,9 +66,11 @@ class Selector:
         if re.match('help|cmd', inp):
             out = open('cmd_ecl.txt', 'r', encoding='utf=8')
             return out.read()
-        if re.match('books', inp):
+
+        elif re.match('books', inp):
             link = 'https://drive.google.com/open?id=1tn50Se62xdbIWGj1_QcbVh36Cd08NHVh'
             return link
+
         else:
             out = open('cmd_ecl.txt', 'r', encoding='utf=8')
             return out.read()
@@ -83,6 +85,20 @@ class Selector:
             link = 'https://drive.google.com/open?id=1fEa8qXoCVmHIS6QvftRjOAcNe6Fx0L0Y'
             return link
 
+        elif re.match('\d+d+\Z', inp):
+            result = d.c_roll(inp)
+            vk_res = str(result)
+            vk_res = re.sub('[(),]', '', vk_res)
+            return vk_res
+
         else:
             out = open('cmd_cor.txt', 'r', encoding='utf=8')
             return out.read()
+
+    def dice(self, inp):
+        result = d.d_roll(inp)
+
+        vk_res = str(result)
+        vk_res = re.sub('[(),]', '', vk_res)
+
+        return vk_res

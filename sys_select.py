@@ -35,6 +35,8 @@ def sys_sel(clr, name):
     elif re.match('\Amath\s', clr):
         clr = clr[5:]
         return formula(clr)
+    elif re.match('\d+d\d+', clr):
+        return s.dice(clr)
     else:
         return 'Select system: dnd, ecl, cor'
 
