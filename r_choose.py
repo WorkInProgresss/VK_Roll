@@ -9,7 +9,7 @@ def race(vk_input):
         inp = vk_input + "\n"
         f.write(inp)
 
-    return "Race Added"
+    return "Item Added"
 
 
 def r_race():
