@@ -4,10 +4,8 @@
 import random
 import re
 
-import numpy
 
-
-def droll(vkinput, mark):
+def d_roll(vkinput):
     error = "Error. Print help for cmd list"
     err = ""
     if '+' in vkinput:
@@ -22,16 +20,6 @@ def droll(vkinput, mark):
             d_res = roll(form[0], form[1])
             res = str(d_res[0] + form[2])
             rolls = list(d_res[1])
-
-            if mark == 0:
-
-                r_plus = numpy.array(rolls)
-                r_plus = r_plus + form[2]
-
-                return r_plus, res
-
-            else:
-                return rolls, res
 
         else:
 
@@ -49,17 +37,7 @@ def droll(vkinput, mark):
             res = str(d_res[0] - form[2])
             rolls = str(d_res[1])
 
-            if mark == 0:
-
-                r_plus = numpy.array(rolls)
-                r_plus = r_plus + form[2]
-                r_plus = str(r_plus)
-
-                return r_plus, err
-
-            else:
-                return rolls, res
-
+            return rolls, res
 
         else:
 
