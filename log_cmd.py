@@ -58,8 +58,10 @@ class Selector:
             return vk_res
 
         else:
-            out = open('cmd_dnd.txt', 'r', encoding='utf=8')
-            return out.read()
+            vk_text = inp
+            link = d_quer(vk_text)
+
+            return link
 
     def sel_ecl(self, inp):
 
