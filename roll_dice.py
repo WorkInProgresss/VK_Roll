@@ -49,6 +49,25 @@ class R_Dice:
         except Exception:
             return 'Broad Exception'
 
+    def e_roll(self, vkinput):
+
+        try:
+            p = re.compile('\d+d+\Z')
+
+            if re.match(p, vkinput):
+                dice = list(vkinput)
+                print(dice)
+                dice[1] = 100
+                # Передаем в функцию броска dice0(кол-во), dice1(стороны=6)
+                d_res, rolls = self.roll(int(dice[0]), int(dice[1]))
+                # Считаем успехи
+                msg = str(rolls)
+                return msg
+
+        except Exception:
+            return 'Broad Exception'
+
+
     def inp_form(self, vk_inp):
         form = vk_inp.replace('-', 'd')
         form = form.replace('+', 'd')

@@ -33,7 +33,7 @@ def main():
 
             vk.messages.send(
                 chat_id=event.chat_id,
-                message=(str(clear(event.obj.text, name)))
+                message=(str(clear(event.obj.text, event.obj.from_id)))
             )
 
 
