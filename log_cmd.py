@@ -58,14 +58,22 @@ class Selector:
             return vk_res
 
         else:
-            out = open('cmd_dnd.txt', 'r', encoding='utf=8')
-            return out.read()
+            vk_text = inp
+            link = d_quer(vk_text)
+
+            return link
 
     def sel_ecl(self, inp):
 
         if re.match('help|cmd', inp):
             out = open('cmd_ecl.txt', 'r', encoding='utf=8')
             return out.read()
+
+        elif re.match('\d+d+\Z', inp):
+            result = d.e_roll(inp)
+            vk_res = str(result)
+            vk_res = re.sub('[(),]', '', vk_res)
+            return vk_res
 
         elif re.match('books', inp):
             link = 'https://drive.google.com/open?id=1tn50Se62xdbIWGj1_QcbVh36Cd08NHVh'

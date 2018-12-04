@@ -1,6 +1,8 @@
 #!/usr/bin/python3.5
 # -*- coding: utf-8 -*-
 
+from random import randint
+
 import requests
 import vk_api
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
@@ -31,9 +33,12 @@ def main():
             # )
             # p_id = ['response'][d['id'] for d in 'profiles']
 
+            rand = randint(0, 9223372036854775807)
+
             vk.messages.send(
                 chat_id=event.chat_id,
-                message=(str(clear(event.obj.text, name)))
+                message=(str(clear(event.obj.text, name))),
+                random_id=rand
             )
 
 
