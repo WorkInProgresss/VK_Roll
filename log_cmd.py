@@ -49,7 +49,7 @@ class Selector:
             link = 'https://drive.google.com/drive/folders/0B89W9HjJUAgnVTcxdzlzN2RlbG8?usp=sharing'
             return link
 
-        elif re.match('\d+d\d', inp):
+        elif re.match('\d+d\d+|d\d+', inp):
             result = d.d_roll(inp)
 
             vk_res = str(result)
