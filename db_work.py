@@ -73,34 +73,3 @@ class Postgres(object):
     def __del__(self):
         self.connection.close()
         self.cursor.close()
-
-# def main():
-#     zid = 88
-#     sys = 'dnd'
-#     db_upd(zid, sys)
-#     return print('Готово')
-#
-#
-# def db_upd(i_id, i_sys):
-#     cur = db_con()
-#     cur.execute(
-#         "INSERT INTO sys_sel(id,system) VALUES(%(id)s, %(sys)s) ON CONFLICT (id) DO UPDATE SET system = %(sys)s",
-#         {'id': i_id, 'sys': i_sys})
-#     return 'Выполнено'
-#
-#
-# def db_con():
-#     try:
-#         conn = psycopg2.connect(
-#             "dbname=vk_sys"
-#             "user=u_sys"
-#             "host=192.168.0.22"
-#             "password=jHp9Gy")
-#         cur = conn.cursor()
-#         return cur
-#     except:
-#         return 'DB connection Error'
-#
-#
-# if __name__ == '__main__':
-#     main()
