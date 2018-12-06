@@ -4,7 +4,6 @@
 from random import randint
 
 import requests
-import settings
 import vk_api
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
 
@@ -52,13 +51,18 @@ def connect():
     log.close()
     print('Лог очищен')
 
+    # Импорт токена из файла
+    gr_token = open("token.txt", "r")
+    gr_token = gr_token.read()
+
     # Авторизация группы:
-    vk_session = vk_api.VkApi(token=settings.TOKEN)
+    vk_session = vk_api.VkApi(token=gr_token)
 
     vk = vk_session.get_api()
 
     longpoll = VkBotLongPoll(vk_session, '172052571')
     return vk, longpoll
+
 
 if __name__ == '__main__':
     main()
