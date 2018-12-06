@@ -1,5 +1,7 @@
+converge
 sympy
 requests
 vk_api
 google-api-python-client
 numpy
+psycopg2

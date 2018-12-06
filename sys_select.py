@@ -2,10 +2,12 @@
 # -*- coding: utf-8 -*-
 import re
 
+from db_work import Postgres
 from log_cmd import Selector
 from math_pars import formula
 
 s = Selector()
+p = Postgres()
 
 
 def clear(vk_text, id):
@@ -13,14 +15,26 @@ def clear(vk_text, id):
     clr = vk_text.split(']', 1)
     roll = str(clr[1])
     clr = roll.strip()
-    return sys_sel(clr, id)
+    return db_sys(clr, id)
+
+
+def db_sys(clr, id):
+    sel = re.compile('\Aselect\s|\Aselect')
+    if re.match(sel, clr):
+        clr = re.sub(sel, "", clr)
+        out = p.update(id, clr)
+        return str(out)
+    elif p.read(id) != 0:
+        clr = p.read(id) + " " + clr
+        return sys_sel(clr, id)
+    else:
+        return sys_sel(clr, id)
 
 
 def sys_sel(clr, id):
     d = re.compile('\Adnd\s|\Adnd|\Ad\s|\Ad')
     c = re.compile('\Aecl\s|\Aecl|\Ae\s|\Ae')
     e = re.compile('\Acor\s|\Acor|\Ac\s|\Ac')
-    sel = re.compile('\Aselect\s|\Aselect')
     if re.match(d, clr):
         clr = re.sub('\Adnd\s|\Adnd|\Ad\s|\Ad\s', "", clr)
         return s.sel_dnd(clr)
@@ -37,8 +51,6 @@ def sys_sel(clr, id):
         return formula(clr)
     elif re.match('\d+d\d+', clr):
         return s.dice(clr)
-    #    elif re.match(sel, clr):
-
     else:
         return 'Select system: dnd, ecl, cor'
 
