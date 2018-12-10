@@ -37,7 +37,6 @@ class R_Dice:
 
             if re.match(p, vkinput):
                 dice = list(vkinput)
-                print(dice)
                 dice[1] = 6
                 # Передаем в функцию броска dice0(кол-во), dice1(стороны=6)
                 d_res, rolls = self.roll(int(dice[0]), int(dice[1]))
@@ -56,7 +55,6 @@ class R_Dice:
 
             if re.match(p, vkinput):
                 dice = list(vkinput)
-                print(dice)
                 dice[1] = 100
                 # Передаем в функцию броска dice0(кол-во), dice1(стороны=6)
                 d_res, rolls = self.roll(int(dice[0]), int(dice[1]))
@@ -88,7 +86,3 @@ class R_Dice:
             rolls.append(d_throw)
 
         return d_res, rolls
-
-
-if __name__ == '__main__':
-    roll()

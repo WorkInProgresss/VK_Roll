@@ -36,6 +36,7 @@ def main():
 
             rand = randint(0, 9223372036854775807)
 
+            print(event.chat_id)
             vk.messages.send(
                 chat_id=event.chat_id,
                 message=(str(clear(event.obj.text, event.obj.from_id))),

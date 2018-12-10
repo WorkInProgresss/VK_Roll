@@ -40,7 +40,6 @@ class Postgres(object):
 
     def update(self, i_id, i_sys):
         try:
-            i_sys = i_sys.lower()
             result = self.cursor.execute(
                 "INSERT INTO sys_sel(id,system) VALUES(%(id)s, %(sys)s) ON CONFLICT (id) DO UPDATE SET system = %(sys)s",
                 {'id': i_id, 'sys': i_sys})
@@ -69,6 +68,23 @@ class Postgres(object):
             return 'error: {}'.format(error)
         else:
             return str(res)
+
+    def unselect(self, i_id):
+        try:
+            system = self.cursor.execute(
+                "SELECT system FROM sys_sel WHERE  id = %s", (i_id,))
+            system = self.cursor.fetchone()
+            if system is None:
+                res = 0
+            else:
+                system = self.cursor.execute(
+                    "DELETE FROM sys_sel WHERE  id = %s", (i_id,))
+                self.connection.commit()
+        except Exception as error:
+            print('error: {}'.format(error))
+            return 'error: {}'.format(error)
+        else:
+            return 'Выбор системы сброшен'
 
     def __del__(self):
         self.connection.close()
