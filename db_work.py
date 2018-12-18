@@ -63,6 +63,7 @@ class Postgres(object):
                 res = 0
             else:
                 res = system[0]
+                return str(res)
         except Exception as error:
             print('error: {}'.format(error))
             return 'error: {}'.format(error)

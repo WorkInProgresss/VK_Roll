@@ -36,10 +36,9 @@ def main():
 
             rand = randint(0, 9223372036854775807)
 
-            print(event.chat_id)
             vk.messages.send(
                 chat_id=event.chat_id,
-                message=(str(clear(event.obj.text, event.obj.from_id))),
+                message=(str(clear(event.obj.text, event))),
                 random_id=rand
             )
 
@@ -60,6 +59,7 @@ def connect():
 
     longpoll = VkBotLongPoll(vk_session, '172052571')
     return vk, longpoll
+
 
 if __name__ == '__main__':
     main()
